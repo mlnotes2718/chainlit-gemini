@@ -45,6 +45,19 @@ time.sleep(1)
 def send_chainlit_message(content: str):
     return cl.Message(content=content)
 
+
+@cl.on_chat_start
+async def start():
+    await cl.Message(content="Welcome to my Gemini-powered assistant!  Ask me anything about...").send()
+    #  You can also add instructions, disclaimers, or example prompts here:
+
+
+# @cl.on_chat_start
+# async def start():
+#     user_name = "Guest"  # Replace with actual user retrieval if you have authentication
+#     await cl.Message(content=f"Hello {user_name}! I'm ready to assist you.").send()
+
+
 @cl.on_message
 async def handle_message(message: cl.Message):
     flask_port = os.getenv("FLASK_PORT", "5000")
